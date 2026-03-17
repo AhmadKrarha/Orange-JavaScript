@@ -1,0 +1,133 @@
+console.log(a)
+var a=10
+🔹 What will be printed? Undediend
+🔹 Explain why ? this is hoisting which mean that the declaration of the var will be lifted up to the top of the scope of the variable 
+
+### Temporal Dead Zone (TDZ)
+
+console.log(a)
+let a=10
+
+🔹 What happens? Reference error cause the decleration is hoistes but not initilized
+🔹 Explain TDZ :is the time period between when a let variable is hoisted and when it is actually initialized 
+
+var x=1
+
+functiontest() {
+if (true) {
+var x=2
+  }
+console.log(x)
+}
+
+test()
+console.log(x)
+// the output would be : 2 and then 1 
+
+### Shadowing + TDZ Trap
+
+```
+let x=10
+
+function test() {
+console.log(x)
+let x=20
+}
+
+test()
+```
+
+🔹 What happens here ? we will get a reference Error cause the inner x will hide the outer x and the inner will be hoisted to the top scope of the function and wont be initialized thats why we get such error.
+
+
+### Classic Closure Problem (var)
+
+for (var i=0;i<3;i++) {
+setTimeout(() =>console.log(i),0)
+}
+
+🔹 What is the output? 3 , 3 , 3  ? why because the callback function work after the loop end and we only have one i in the program and the callback function save the reference of the i not its value 
+# but with let creates a brand new i for every single iteration of the loop, Each callback gets its own private copy of i frozen at that iteration's value.
+
+```
+var a=1
+
+function outer() {
+var a=2
+
+function inner() {
+console.log(a)
+  }
+
+inner()
+}
+
+outer()
+```
+
+🔹 What is the output? 2 why because there is something called scope chain in js and that mean when the inner dont find the a value in its scope it goes to something outer even if the outer function have finished its work 
+
+Re-declaration Error
+
+var a=10
+let a=20
+🔹 What happens? Syntax Error: Identifier 'a' has already been declared || let has a strict rule — it cannot be declared if that name already exists in the same scope, regardless of whether it was declared with var, let, or const.
+
+console.log(foo)
+
+var foo=10
+
+function foo() {
+return 20
+}
+What is the output? [Function : foo] based on the hoisting priority the function has higher priority than the variables in hoisting.
+
+let a=10
+
+function test() {
+a=20
+}
+
+test()
+console.log(a)
+🔹 What is the output? we didn't declare a new variable here so based on the scope chaining we search on the outer scope and changer the targeted variable.
+{
+var a=10
+}
+console.log(a)
+
+🔹 What is the output? var is function-scoped, not block-scoped. It completely ignores { } curly braces unless they belong to a function.
+{
+let a=10
+}
+console.log(a)
+
+🔹 What happens? let is block-scoped. The moment the { } closes, a is gone from memory and completely inaccessible.
+let a= 5
+
+function test(a) {
+console.log(a)
+}
+test(10)
+
+🔹 What is the output? 10
+
+
+function test() {
+for (var i=0;i<3;i++) {
+setTime out(() =>console.log(i),100)
+  }
+}
+test()
+
+🔹 What is the output? 3 3 3 
+
+```
+for (var i=0;i<3;i++) {
+  (function(i) {
+setTimeout(() =>console.log(i),0)
+  })(i)
+}
+```
+
+🔹 What is the output? 0 1 2
