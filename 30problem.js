@@ -1,4 +1,4 @@
-function countFrom1to10() {
+function countFrom1to10() { //1
  do{
     let i = 1;
     console.log(i);
@@ -9,7 +9,7 @@ function countFrom1to10() {
 
  }while( i <= 10);
 }
-function sumFrom0To30()
+function sumFrom0To30()                       //2
 {
     let sum = 0;
     for(let i = 0; i <= 30; i++){
@@ -17,7 +17,7 @@ function sumFrom0To30()
     }
     console.log(sum);
 }
-function evenNumbersFrom1To50()
+function evenNumbersFrom1To50()                     //3
 {
     for(let i = 1; i <= 50; i++){
         if(i % 2 === 0){
@@ -25,22 +25,21 @@ function evenNumbersFrom1To50()
         }
     }
 }
-function countFrom10To1()
+function countFrom10To1()                              //4
 {
     for(let i = 10; i >= 1; i--){
         document.write(i);
     }
 }
-function patternPrint()
+function patternPrint()                              //5
 {
     for (let i  = 4 ; i >= 0 ; i --)
     {
         let A = "A";
         let B = 65;
-        for(let j = 0 ; j <= i ; j ++ )
+        for(let j = 0 ; j <= i ; j++ )
         {
-            console.log(A);
-            
+            console.log(A);  
         }
         console.log(String.fromCharCode(B));
         B++;
@@ -48,20 +47,19 @@ function patternPrint()
     }
 }
 
-function patternPrint2()
+function patternPrint2()                              //6
 {
     for (let i  = 1 ; i >= 5 ; i++)
     {
         for(let j = 1 ; j >= 5 ; j++ )
         {
             console.log(i);
-            
         }
        console.log(j);
         document.write("<br>");
     }
 }
-function diagonalyPrint()
+function diagonalyPrint()                                        //7
 {
     for (let i  = 0 ; i <= 4 ; i++)
     {
@@ -76,7 +74,7 @@ function diagonalyPrint()
         document.write("<br>");
     }
 }
-function factorial(n)
+function factorial(n)                                               //8
  {
     if (n === 0) 
     {           
@@ -85,7 +83,7 @@ function factorial(n)
       return n * factorial(n - 1);
     }
   }
-function Fibonnanci()
+function Fibonnanci()                                            //9
 {
     let prev = 0;
     let next = 1;
@@ -97,7 +95,7 @@ function Fibonnanci()
         prev = temp;
     }
 }
-function countOccurence(c)
+function countOccurence(c)                                    //10
 {
     let count = 0;
     for(let i = 0 ; i < c.length ; i++)
@@ -109,7 +107,7 @@ function countOccurence(c)
     }
     console.log(count);
 }
-function multiplicationTable()
+function multiplicationTable()                              //11
 {
     for(let i = 1 ; i <= 5 ; i++)
     {
@@ -120,7 +118,7 @@ function multiplicationTable()
         document.write("<br>");
     }
 }
-function floydTriangle()
+function floydTriangle()                                  //12
 {
   let count = 1;
     for(let i = 1 ; i <= 20 ; i++)
@@ -133,7 +131,7 @@ function floydTriangle()
         document.write("<br>");
     }
 }
-function divisibleBy7()
+function divisibleBy7()                                       //13
 {
     for(let i = 1 ; i <= 100 ; i++)
     {
@@ -143,7 +141,7 @@ function divisibleBy7()
         }
     }
 }
-function sumOddNumbers()
+function sumOddNumbers()                                     //14
 {
     let sum = 0;
     for(let i = 1 ; i <= 100 ; i++)
@@ -155,7 +153,7 @@ function sumOddNumbers()
     }
     console.log(sum);
 }
-function squareNumbers()
+function squareNumbers()                                          //15
 {
     for(let i = 1 ; i <= 10 ; i++)
     {
@@ -163,7 +161,7 @@ function squareNumbers()
     }
 }
 
-function triangleNumber20()
+function triangleNumber20()                                        //20
 {
     for(let i = 1 ; i <= 5 ; i ++ )
     {
@@ -174,7 +172,7 @@ function triangleNumber20()
     document.write("<br>");
     }
 }
-function triangle17()
+function triangle17()                                                    //17                                          
 {
     for(let i = 1 ; i <= 5 ; i++)
     {
@@ -185,7 +183,7 @@ function triangle17()
         document.write("<br>")
     }
 }
-function FizzBuzz()
+function FizzBuzz()                                                          // 16
 {
     for(let i = 1 ; i <=30 ; i++)
     {
@@ -203,7 +201,7 @@ function FizzBuzz()
         }
     }
 }
-function reverseTriangel18()
+function reverseTriangel18()                                                  //18
 {
     for(let i = 1 ; i <=5 ; i++)
     {
@@ -214,7 +212,7 @@ function reverseTriangel18()
         document.write("<br>");
     }
 }
-function triangle19()
+function triangle19()                                                                //19
 {
     for(let i = 1 ; i <= 5 ; i++)
     {
@@ -224,12 +222,16 @@ function triangle19()
         }
         document.write("<br>");
     }
-}function sumEqualf5() {
-    for (let i = 1; i <= 200; i++) {
+}
+function sumEqualf5()                                         // 21
+{
+    for (let i = 1; i <= 200; i++)
+        {
         let sum = 0;
         let temp = i; 
 
-        while (temp > 0) {
+        while (temp > 0)
+            {
             sum += temp % 10;        
             temp = Math.floor(temp / 10); 
         }
@@ -238,7 +240,7 @@ function triangle19()
         }
     }
 }
-function compare2digit()
+function compare2digit()                                        //22
 {
     for(let i = 1 ; i < 100 ; i++)
     {
@@ -252,7 +254,7 @@ function compare2digit()
 }
 
 
-function equalDigit()
+function equalDigit()                                              // 23
 {
      for(let i = 1 ; i < 100 ; i++)
     {
@@ -264,7 +266,7 @@ function equalDigit()
             {console.log(i);}
     }
 }
-function DivisibleByProduct()
+function DivisibleByProduct()                                         // 24
 {
     for(let i = 1 ; i < 300 ; i++)
     {
@@ -289,7 +291,7 @@ function DivisibleByProduct()
                     
     }
 }
-function digitSumEqualDigitMul()
+function digitSumEqualDigitMul()                              //25
 {
     for(let i = 0 ; i < 100 ; i++)
     {
@@ -302,7 +304,7 @@ function digitSumEqualDigitMul()
     }
 }
 
-function reverseNum()
+function reverseNum()                                                  //26
 {
     let numbers = "";
     let last ;
@@ -322,7 +324,7 @@ function reverseNum()
         numbers = "";
     }
 }
-function diffrenceIs2()
+function diffrenceIs2()                                                 //27
 {
     for(let i = 1 ; i < 200 ; i++)
     {
@@ -335,7 +337,7 @@ function diffrenceIs2()
         }
     }
 }
-function DigitsINascending() {
+function DigitsINascending() {                                        //28
     for (let i = 1; i < 500; i++) {
         let temp = i;
         let isAscending = true; 
@@ -358,7 +360,7 @@ function DigitsINascending() {
         
     }
 }
-function DigitsINDescending() {
+function DigitsINDescending() {                                        //29
     for (let i = 1; i < 500; i++) {
         let temp = i;
         let isDescending = true;
@@ -382,7 +384,7 @@ function DigitsINDescending() {
         }
     }
 }
-function twoDigitSum() {
+function twoDigitSum() {                                                                  //30
     for (let i = 1; i < 300; i++) {
         let temp = i;
         let last = temp % 10;
@@ -463,5 +465,23 @@ function twoDigitEqual()
             last = left;
             
         }
+    }
+}
+//Write a program that prints numbers from 1 to 300 that are divisible by the product of their digits.
+function DivisibelByproduct()
+{
+    for(let i = 1 ; i < 300 ; i++)
+    {
+        
+
+
+
+
+
+
+
+
+
+
     }
 }

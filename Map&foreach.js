@@ -27,7 +27,7 @@ function makeUsernames(arr){
 function squareNumbers(arr){
     return arr.map(Element => Element * Element);
 }
-functionfirstLetters(arr){
+function firstLetters(arr){
     return arr.map(Element => Element[0]);
 }
 function sumNumbers(arr)
