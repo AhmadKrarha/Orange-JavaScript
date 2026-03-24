@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Practice Playground</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; padding: 20px; background: #f4f4f4; }
+        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .card { border: 1px solid #ddd; padding: 10px; margin: 10px 0; border-radius: 4px; }
+        .active { background-color: #e7f3ff; border-color: #007bff; }
+        .error-msg { color: red; font-size: 0.8rem; display: none; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="main-container">
+        <h1 id="main-title">My Task List</h1>
+        
+        <section id="input-section">
+            <input type="text" id="task-input" placeholder="Enter a new task...">
+            <button id="add-btn">Add Task</button>
+            <p class="error-msg">Please enter some text!</p>
+        </section>
+
+        <hr>
+
+        <ul id="task-list">
+            <li class="card">
+                <span>Learn DOM Tree Structure</span>
+                <button class="delete-btn">Delete</button>
+            </li>
+            <li class="card">
+                <span>Master querySelector</span>
+                <button class="delete-btn">Delete</button>
+            </li>
+            </ul>
+
+        <button id="clear-all">Clear All Tasks</button>
+    </div>
+
+    <script>
+const container = document.querySelector('#main-container');
+
+console.log("All Children Elements:", container.children);
+
+console.log("First Child Element:", container.firstElementChild);
+console.log("Last Child Element:", container.lastElementChild);
+
+
+const title = document.querySelector('#main-title');
+console.log("Next Sibling:", title.nextElementSibling); 
+//-----------------------------------------------------------------------------
+
+const card = document.createElement('div');
+card.className = 'card'; 
+card.style.border = '2px solid #333';
+card.style.padding = '15px';
+card.style.maxWidth = '300px';
+
+const title2 = document.createElement('h2');
+title2.textContent = 'Learning the DOM';
+title2.style.color = '#007bff';
+
+const description = document.createElement('p');
+description.textContent = 'This card was created entirely using JavaScript createElement and appendChild methods!';
+
+
+const image = document.createElement('img');
+image.src = 'https://via.placeholder.com/280x150'; 
+image.alt = 'DOM Tutorial Image';
+image.style.width = '100%';
+image.style.borderRadius = '4px';
+
+
+card.appendChild(title2);
+card.appendChild(image);
+card.appendChild(description);
+
+const mainContainer = document.getElementById('main-container');
+mainContainer.appendChild(card);
+//-----------------------------------------------------------------------------
+
+const mainDiv = document.getElementById('main-container');
+const list = mainDiv.firstElementChild; 
+console.log("The UL element:", list);
+
+const firstItem = list.firstElementChild;
+console.log("First LI:", firstItem.textContent);
+
+const secondItem = firstItem.nextElementSibling;
+console.log("Second LI:", secondItem.textContent);
+
+const backToUl = firstItem.parentElement;
+console.log("Back at the UL?", backToUl === list); 
+//-------------------------------------------------------------------------------
+
+const clearBtn = document.getElementById('clear-all');
+
+const finishMessage = document.createElement('span');
+finishMessage.textContent = "All tasks Done";
+clearBtn.replaceWith(finishMessage);
+
+
+const firstTaskSpan = document.querySelector('#task-list li span');
+firstTaskSpan.textContent = "DONE: DOM Mastery Achieved!";
+
+
+const secondTask = document.querySelector('#task-list').children[1];
+secondTask.classList.add('active');
+
+
+    </script>
+</body>
+</html>
