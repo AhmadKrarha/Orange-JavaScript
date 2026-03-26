@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        .HelloWorld {
+            color: black;
+            background-color: red;
+            text-align: center;
+            font-size: 20px;
+            width: 200px;
+            height: 100px;
+            border: 2px solid black;
+            border-radius: 10px;
+            padding-top: 30px;
+        }
+
+        .HelloWorld:hover {
+            color: black;
+            background-color: yellow;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            padding-top: 30px;
+        }
+        .hidden {
+      display: none;
+  }
+    </style>
+</head>
+
+<body>
+    <div class="HelloWorld"> Hello World</div>
+
+
+    <select id="country-select">
+        <option value="no">Norway</option>
+        <option value="jp">Japan</option>
+        <option value="br">Brazil</option>
+        <option value="eg">Egypt</option>
+    </select>
+
+    <img id="flag-display" src="" alt="Country Flag" style="display:none; width: 100px;">
+
+
+    <button id="toggle-btn">Show Image</button>
+<br><br>
+<img id="target-image" src="https://flagcdn.com/w320/no.png"alt="norway flag"  class="hidden" style="width: 200px;">
+
+    <script>
+        const select = document.querySelector("#country-select");
+        const flagImg = document.querySelector("#flag-display");
+
+        select.addEventListener("change", function () {
+            const countryCode = select.value;
+
+            if (countryCode) {
+                flagImg.src = `https://flagcdn.com/w160/${countryCode}.png`;
+                flagImg.style.display = "block";
+            } else {
+                flagImg.style.display = "none";
+            }
+        });
+
+        const btn = document.querySelector("#toggle-btn");
+        const img = document.querySelector("#target-image");
+
+btn.addEventListener("click", function() {
+    img.classList.toggle("hidden");
+    btn.textContent = img.classList.contains("hidden") ? "Show Image" : "Hide Image";
+});
+    </script>
+
+
+</body>
+
+</html>
