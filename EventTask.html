@@ -108,42 +108,43 @@
             border: 1px solid #ccc;
             background: white;
         }
+
         .counter-container {
-    text-align: center;
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
 
-#value {
-    font-size: 6rem;
-    font-weight: bold;
-    display: block;
-    margin: 20px 0;
-    transition: color 0.3s ease;
-}
+        #value {
+            font-size: 6rem;
+            font-weight: bold;
+            display: block;
+            margin: 20px 0;
+            transition: color 0.3s ease;
+        }
 
-.button-group {
-    display: flex;
-    gap: 10px;
-}
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
 
-.btn {
-    padding: 10px 20px;
-    border: 2px solid #222;
-    background: transparent;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: all 0.2s;
-}
+        .btn {
+            padding: 10px 20px;
+            border: 2px solid #222;
+            background: transparent;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
 
-.btn:hover {
-    background: #222;
-    color: white;
-}
+        .btn:hover {
+            background: #222;
+            color: white;
+        }
     </style>
 </head>
 
@@ -176,14 +177,14 @@
     </section>
 
     <div class="counter-container">
-    <h1>Counter</h1>
-    <span id="value">0</span>
-    <div class="button-group">
-        <button class="btn decrease">Decrease</button>
-        <button class="btn reset">Reset</button>
-        <button class="btn increase">Increase</button>
+        <h1>Counter</h1>
+        <span id="value">0</span>
+        <div class="button-group">
+            <button class="btn decrease">Decrease</button>
+            <button class="btn reset">Reset</button>
+            <button class="btn increase">Increase</button>
+        </div>
     </div>
-</div>
 
     <script>
         const toggleBtn = document.querySelector("#toggleBtn");
@@ -255,38 +256,32 @@
         const value = document.querySelector('#value');
 
         let count = 0;
-
-      // 1. Create a function to handle the "View" (what the user sees)
-function updateDisplay() {
-    value.textContent = count;
-
-    // Change color based on count
-    if (count > 0) {
-        value.style.color = 'green';
-    } else if (count < 0) {
-        value.style.color = 'red';
-    } else {
-        value.style.color = 'black';
-    }
-}
-
-// 2. Use that function inside your listeners
-increaseBtn.addEventListener('click', function () {
-    count++;
-    updateDisplay(); // Call the helper!
-});
-
-decreaseBtn.addEventListener('click', function () {
-    count--;
-    updateDisplay();
-});
-
-resetBtn.addEventListener('click', function () {
-    count = 0;
-    updateDisplay();
-});
+        function updateDisplay() {
+            value.textContent = count;
+            if (count > 0) {
+                value.style.color = 'green';
+            } else if (count < 0) {
+                value.style.color = 'red';
+            } else {
+                value.style.color = 'black';
+            }
+        }
 
 
+        increaseBtn.addEventListener('click', function () {
+            count++;
+            updateDisplay();
+        });
+
+        decreaseBtn.addEventListener('click', function () {
+            count--;
+            updateDisplay();
+        });
+
+        resetBtn.addEventListener('click', function () {
+            count = 0;
+            updateDisplay();
+        });
     </script>
 </body>
 

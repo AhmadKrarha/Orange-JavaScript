@@ -28,9 +28,85 @@
             text-align: center;
             padding-top: 30px;
         }
+
         .hidden {
-      display: none;
-  }
+            display: none;
+        }
+
+
+        .editor-wrapper {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            width: 600px;
+        }
+
+        .toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8f9fa;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        select,
+        input[type="number"] {
+            padding: 6px 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            background-color: white;
+        }
+
+        input[type="number"] {
+            width: 60px;
+        }
+
+        .checkboxes label {
+            cursor: pointer;
+            padding: 0 5px;
+            font-size: 1.1rem;
+        }
+
+        textarea {
+            width: 100%;
+            height: 250px;
+            padding: 15px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            font-size: 20px;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        textarea:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+        }
+
+        #colorBox {
+            width: 200px;
+            height: 200px;
+            background-color: #3498db;
+            /* Starting color (Blue) */
+            border-radius: 12px;
+
+            /* This makes the color change smooth over 1 second */
+            transition: background-color 1s ease-in-out;
+
+            /* Just for styling */
+            margin: 50px auto;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 
@@ -49,8 +125,37 @@
 
 
     <button id="toggle-btn">Show Image</button>
-<br><br>
-<img id="target-image" src="https://flagcdn.com/w320/no.png"alt="norway flag"  class="hidden" style="width: 200px;">
+    <br><br>
+    <img id="target-image" src="https://flagcdn.com/w320/no.png" alt="norway flag" class="hidden" style="width: 200px;">
+
+    <div class="editor-wrapper">
+        <h1>Mini Text Editor</h1>
+
+        <div class="toolbar">
+            <div class="control-group">
+                <label for="fontFamily">Font:</label>
+                <select id="fontFamily">
+                    <option value="sans-serif">Sans-Serif</option>
+                    <option value="serif">Serif</option>
+                    <option value="monospace">Monospace</option>
+                    <option value="cursive">Cursive</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="fontSize">Size (px):</label>
+                <input type="number" id="fontSize" value="20" min="10" max="100">
+            </div>
+
+            <div class="control-group checkboxes">
+                <label><input type="checkbox" id="isBold"> <b>B</b></label>
+                <label><input type="checkbox" id="isUnderline"> <u>U</u></label>
+            </div>
+        </div>
+
+        <textarea id="textInput" placeholder="Start typing your masterpiece..."></textarea>
+        <div id="colorBox" class="box"></div>
+    </div>
 
     <script>
         const select = document.querySelector("#country-select");
@@ -70,10 +175,32 @@
         const btn = document.querySelector("#toggle-btn");
         const img = document.querySelector("#target-image");
 
-btn.addEventListener("click", function() {
-    img.classList.toggle("hidden");
-    btn.textContent = img.classList.contains("hidden") ? "Show Image" : "Hide Image";
-});
+        btn.addEventListener("click", function () {
+            img.classList.toggle("hidden");
+            btn.textContent = img.classList.contains("hidden") ? "Show Image" : "Hide Image";
+        });
+        let fontFamily = document.getElementById("fontFamily");
+        let fontSize = document.getElementById("fontSize");
+        let isBold = document.getElementById("isBold");
+        let isUnderline = document.getElementById("isUnderline");
+        let textInput = document.getElementById("textInput");
+
+        textInput.addEventListener("input", function () {
+            textInput.style.fontFamily = fontFamily.value;
+            textInput.style.fontSize = fontSize.value + "px";
+            textInput.style.fontWeight = isBold.checked ? "bold" : "normal";
+            textInput.style.textDecoration = isUnderline.checked ? "underline" : "none";
+        });
+        const box = document.getElementById('colorBox');
+
+        const colors = ['red', 'White', 'cyan', 'black', 'blue'];
+        let currentIndex = 0;
+
+        setInterval(() => {
+
+            box.style.backgroundColor = colors[currentIndex];
+            currentIndex = (currentIndex + 1) % colors.length;
+        }, 2000);
     </script>
 
 
