@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registration Form</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 20px 0 black;
+      width: 100%;
+      max-width: 520px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      background-color: blue;
+      padding: 22px;
+      text-align: center;
+    }
+
+    .card-header h1 {
+      color: white;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .card-body {
+      padding: 30px 35px;
+    }
+
+    .row {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 16px;
+    }
+
+    .row .field {
+      flex: 1;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      font-size: 14px;
+      color: #222;
+      margin-bottom: 6px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      color: black;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus {
+      border-color: blue;
+    }
+
+    input.error {
+      border-color: red;
+    }
+
+    .date-wrapper {
+      position: relative;
+    }
+
+    .date-wrapper input {
+      padding-right: 40px;
+    }
+
+    .date-wrapper .cal-icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      cursor: pointer;
+      color: #555;
+    }
+
+    .error-msg {
+      color: red;
+      font-size: 12px;
+      margin-top: 4px;
+      display: none;
+    }
+
+    .error-msg.show {
+      display: block;
+    }
+
+    .btn-register {
+      display: block;
+      width: 70%;
+      margin: 10px auto 0;
+      padding: 14px;
+      background-color: blue;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .btn-register:hover {
+      background-color: #155a9e;
+    }
+
+    .submit-error {
+      text-align: center;
+      color: #555;
+      font-size: 13px;
+      margin-top: 10px;
+      display: none;
+    }
+
+    .submit-error.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-header">
+    <h1>Registration Form</h1>
+  </div>
+
+  <div class="card-body">
+
+
+    <div class="row">
+      <div class="field">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" />
+        <span class="error-msg" id="firstNameError">Letters only.</span>
+      </div>
+      <div class="field">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" />
+        <span class="error-msg" id="lastNameError">Letters only.</span>
+      </div>
+    </div>
+
+
+    <div class="field">
+      <label for="dob">Date of Birth</label>
+      <div class="date-wrapper">
+        <input type="date" id="dob" />
+        <span class="cal-icon">📅</span>
+      </div>
+      <span class="error-msg" id="dobError">Please enter a valid date.</span>
+    </div>
+
+    <div class="field">
+      <label for="email">Email Address</label>
+      <input type="text" id="email" />
+      <input type="text" id="confirmEmail" placeholder="Confirm Email" style="margin-top: 8px;" />
+      <span class="error-msg" id="emailError">Please enter a valid email.</span>
+      <span class="error-msg" id="confirmEmailError">Emails do not match.</span>
+    </div>
+
+
+    <div class="field">
+      <label for="password">Password</label>
+      <input type="password" id="password" />
+      <span class="error-msg" id="passwordError">
+        Password must start with a capital letter, include 2 numbers, 1 special character, and be 8–32 characters.
+      </span>
+    </div>
+
+    <div class="field">
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" />
+      <span class="error-msg" id="confirmPasswordError">Passwords do not match.</span>
+    </div>
+
+    <!-- Submit -->
+    <button class="btn-register" id="registerBtn">Register</button>
+    <p class="submit-error" id="submitError">Please fix the errors above to submit the form.</p>
+
+  </div>
+</div>
+
+<script>
+  let firstName        = document.querySelector("#firstName");
+  let lastName         = document.querySelector("#lastName");
+  let dob              = document.querySelector("#dob");
+  let email            = document.querySelector("#email");
+  let confirmEmail     = document.querySelector("#confirmEmail");
+  let password         = document.querySelector("#password");
+  let confirmPassword  = document.querySelector("#confirmPassword");
+  let registerBtn      = document.querySelector("#registerBtn");
+
+  let firstNameError       = document.querySelector("#firstNameError");
+  let lastNameError        = document.querySelector("#lastNameError");
+  let dobError             = document.querySelector("#dobError");
+  let emailError           = document.querySelector("#emailError");
+  let confirmEmailError    = document.querySelector("#confirmEmailError");
+  let passwordError        = document.querySelector("#passwordError");
+  let confirmPasswordError = document.querySelector("#confirmPasswordError");
+  let submitError          = document.querySelector("#submitError");
+
+
+  function isLettersOnly(value) {
+    return /^[A-Za-z]+$/.test(value);
+  }
+
+  function isValidEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
+
+  // FIX 1: Check password.value (not the element), and count digits correctly
+  function isValidPassword(value) {
+    if (value.length < 8 || value.length > 32) return false;
+    if (!/^[A-Z]/.test(value)) return false;                        
+    if ((value.match(/[0-9]/g) || []).length < 2) return false;     
+    if (!/[!@#$%^&*]/.test(value)) return false;                    
+    return true;
+  }
+
+  function showError(input, errorSpan) {
+    input.classList.add("error");
+    errorSpan.classList.add("show");
+  }
+
+  function hideError(input, errorSpan) {
+    input.classList.remove("error");
+    errorSpan.classList.remove("show");
+  }
+  firstName.addEventListener("input", function () {
+    if (isLettersOnly(this.value)) {
+      hideError(firstName, firstNameError);
+    } else {
+      showError(firstName, firstNameError);
+    }
+  });
+
+  lastName.addEventListener("input", function () {
+    if (isLettersOnly(this.value)) {
+      hideError(lastName, lastNameError);
+    } else {
+      showError(lastName, lastNameError);
+    }
+  });
+
+  dob.addEventListener("input", function () {
+    if (dob.value !== "") {
+      hideError(dob, dobError);
+    } else {
+      showError(dob, dobError);
+    }
+  });
+
+  email.addEventListener("input", function () {
+    if (isValidEmail(email.value)) {
+      hideError(email, emailError);
+    } else {
+      showError(email, emailError);
+    }
+    // Re-check match whenever the main email changes
+    if (confirmEmail.value !== "") {
+      if (email.value === confirmEmail.value) {
+        hideError(confirmEmail, confirmEmailError);
+      } else {
+        showError(confirmEmail, confirmEmailError);
+      }
+    }
+  });
+
+  confirmEmail.addEventListener("input", function () {
+    if (email.value === confirmEmail.value) {
+      hideError(confirmEmail, confirmEmailError);
+    } else {
+      showError(confirmEmail, confirmEmailError);
+    }
+  });
+
+  // FIX 3: use password.value not password (DOM element)
+  password.addEventListener("input", function () {
+    if (isValidPassword(password.value)) {
+      hideError(password, passwordError);
+    } else {
+      showError(password, passwordError);
+    }
+
+    if (confirmPassword.value !== "") {
+      if (password.value === confirmPassword.value) {
+        hideError(confirmPassword, confirmPasswordError);
+      } else {
+        showError(confirmPassword, confirmPasswordError);
+      }
+    }
+  });
+
+  confirmPassword.addEventListener("input", function () {
+    if (password.value === confirmPassword.value) {
+      hideError(confirmPassword, confirmPasswordError);
+    } else {
+      showError(confirmPassword, confirmPasswordError);
+    }
+  });
+
+  registerBtn.addEventListener("click", function () {
+    let isValid = true;
+
+    if (!isLettersOnly(firstName.value)) {
+      showError(firstName, firstNameError);
+      isValid = false;
+    }
+
+    if (!isLettersOnly(lastName.value)) {
+      showError(lastName, lastNameError);
+      isValid = false;
+    }
+
+    if (dob.value === "") {
+      showError(dob, dobError);
+      isValid = false;
+    }
+
+    if (!isValidEmail(email.value)) {
+      showError(email, emailError);
+      isValid = false;
+    }
+
+    if (email.value !== confirmEmail.value) {
+      showError(confirmEmail, confirmEmailError);
+      isValid = false;
+    }
+
+    if (!isValidPassword(password.value)) {
+      showError(password, passwordError);
+      isValid = false;
+    }
+
+    if (password.value !== confirmPassword.value) {
+      showError(confirmPassword, confirmPasswordError);
+      isValid = false;
+    }
+
+    if (!isValid) {
+      submitError.classList.add("show");
+    } else {
+      submitError.classList.remove("show");
+      alert("Registration successful! ✅");
+    }
+  });
+</script>
+
+</body>
+</html>

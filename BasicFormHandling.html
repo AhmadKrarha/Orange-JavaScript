@@ -115,7 +115,7 @@
                 emailError.textContent = "Enter your email";
                 isValid = false;
             }
-                const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
             if (!emailPattern.test(email)) {
                 emailError.textContent = "Invalid email";
                 isValid = false;
@@ -131,9 +131,6 @@
             else {
                 phoneError.textContent = "";
             }
-
-
-
             if (isValid) {
                 document.querySelector("#firstNameDiv").innerText = firstName;
                 document.querySelector("#lastNameDiv").innerText = lastName;
@@ -146,9 +143,6 @@
             }
 
         });
-        
-       
-
     </script>
 </body>
 
