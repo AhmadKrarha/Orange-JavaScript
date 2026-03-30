@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local storage test</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        input {
+            margin: 10px;
+            padding: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1> this is a local storage test</h1>
+    <form action="">
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Enter your name">
+        <button type="button" onclick="saveName()">Save Name</button>
+    </form>
+    <hr>
+    <h2>Form 2</h2>
+    <form action="">
+        <label for="name2"> Name</label>
+        <input type="text" id="name2" placeholder="Enter your name">
+        
+        <label for="email">Email</label>
+        <input type="text" id="email" placeholder="Enter your email">
+        
+        <button type="button" onclick="saveInfo()">Save Info</button>
+        <div id="showInfo"> </div>
+    </form>
+
+    <script>
+        function saveName() {
+            const nameInput = document.getElementById('name');
+            const name = nameInput.value;
+            localStorage.setItem('name', name);
+            alert('Name saved to local storage!');
+        }
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+            });
+        });
+        let myObj = {};
+
+        function saveInfo() {
+           
+            const nameInput = document.getElementById('name2').value;
+            const emailInput = document.getElementById('email').value;
+           
+            myObj.name = nameInput;
+            myObj.email = emailInput;
+
+            localStorage.setItem('name', JSON.stringify(myObj.name));
+            localStorage.setItem('email',JSON.stringify(myObj.email));
+            
+            alert('Name and email saved to local storage!');
+
+            const showInfo = document.getElementById('showInfo');
+            showInfo.innerHTML = `Name: ${localStorage.getItem('name')}<br>Email: ${localStorage.getItem('email')}`;
+        }
+        
+
+        
+    </script>
+
+    </body>
+</html>

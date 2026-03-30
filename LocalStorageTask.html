@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage Task </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 90vh;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: sans-serif;
+            border: solid 1px black;
+            border-radius: 10px;
+            width: 70vw;
+            margin: auto;
+            background-color: aliceblue;
+
+        }
+
+        container h1 {
+            margin-top: 20px;
+            color: blue;
+            font-size: 50px;
+        }
+
+        .serchBar {
+            display: flex;
+            gap: 10px;
+            /* Adds space between input and button naturally */
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        #searchInput {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+        }
+
+        #clearButton {
+            padding: 10px 20px;
+            background-color: #4f46e5;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        hr {
+            color: blue;
+        }
+
+        h2 {
+
+            color: blue;
+            text-align: start;
+
+        }
+
+        hr {
+            color: red;
+            width: 100%;
+        }
+
+        .card {
+            width: 300px;
+            height: 20px;
+            padding: 20px;
+
+            border: 1px solid #ccc;
+            background-color: rgb(207, 143, 250);
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 20px;
+        }
+
+        .card i {
+            font-size: 30px;
+
+        }
+
+        .card p {
+            font-size: 20px;
+            margin-right: 120px;
+        }
+
+        .delete-btn {
+            width: 100px;
+            padding: 8px 12px;
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .delete-btn:hover {
+            background-color: #cc0000;
+        }
+        .fa-x {
+            color: white;
+            font-size: small;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <h1><i class="fa-solid fa-magnifying-glass"></i> User Search</h1>
+        <hr>
+
+
+        <div class="serchBar">
+            <input type="text" id="searchInput" placeholder="Enter GitHub username">
+            <button id="clearButton">Clear</button>
+        </div>
+        <h2>Result </h2>
+        <div id="resultContainer">
+
+
+        </div>
+
+    </div>
+    <script>
+        const users = [
+            { name: "Ahmad", },
+            { name: "Ali" },
+            { name: "Sara" },
+            { name: "Lana" }
+        ];
+
+        const resultContainer = document.getElementById("resultContainer");
+        const searchInput = document.getElementById("searchInput");
+        const clearButton = document.getElementById("clearButton");
+
+
+        function displayUsers(data) {
+            resultContainer.innerHTML = "";
+            data.forEach(user => {
+                const card = `
+                <div class="card"> 
+                    <i class="fa-solid fa-circle-user"></i>
+                    <p>${user.name}</p>
+                    <button class="delete-btn"><i class="fa-solid fa-x"></i> Delete</button>    
+                </div>`;
+                resultContainer.innerHTML += card;
+            });
+        }
+
+        const savedTerm = localStorage.getItem("lastSearchTerm") || "";
+        searchInput.value = savedTerm;
+
+        const initialFiltered = users.filter(u => u.name.toLowerCase().includes(savedTerm.toLowerCase()));
+        displayUsers(initialFiltered);
+
+        searchInput.addEventListener("input", () => {
+            const searchTerm = searchInput.value.toLowerCase();
+
+            localStorage.setItem("lastSearchTerm", searchTerm);
+
+            const filteredUsers = users.filter(user => user.name.toLowerCase().includes(searchTerm));
+            displayUsers(filteredUsers);
+        });
+
+        clearButton.addEventListener("click", () => {
+            searchInput.value = "";
+            localStorage.removeItem("lastSearchTerm");
+            displayUsers(users);
+        });
+    </script>
+</body>
+
+</html>
